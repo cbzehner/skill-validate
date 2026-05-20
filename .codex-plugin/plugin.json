@@ -1,0 +1,30 @@
+{
+  "name": "validate",
+  "version": "0.1.0",
+  "description": "Evidence-first validation for diffs, bug fixes, UI work, plans, and release candidates.",
+  "author": {
+    "name": "cbzehner",
+    "email": "chris@cbzehner.com",
+    "url": "https://github.com/cbzehner"
+  },
+  "homepage": "https://github.com/cbzehner/skill-validate",
+  "repository": "https://github.com/cbzehner/skill-validate",
+  "license": "MIT",
+  "keywords": ["validation", "testing", "verification", "evidence", "quality"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Validate",
+    "shortDescription": "Prove concrete work with evidence.",
+    "longDescription": "Runs repo-native checks, maps acceptance criteria to evidence, captures browser proof when needed, and reports honest validation gaps without committing or delivering changes.",
+    "developerName": "cbzehner",
+    "category": "Quality",
+    "capabilities": ["Test", "Review"],
+    "websiteURL": "https://github.com/cbzehner/skill-validate",
+    "defaultPrompt": [
+      "Validate this implementation against the plan.",
+      "Prove this bug fix works.",
+      "Run acceptance checks for this branch without creating a PR."
+    ],
+    "brandColor": "#2F6F5E"
+  }
+}
