@@ -61,14 +61,36 @@ Write a short internal checklist:
 - behavior or artifact being validated
 - acceptance criteria or expected observable result
 - touched runtime surfaces
+- whether a red -> change -> green loop is required or already evidenced
 - risk areas that need more than a happy-path command
 - checks that are out of scope
 
-### 2. Pick Evidence
+### 2. TDD Gate
+
+Default to red -> change -> green for new behavior, bug fixes, and non-trivial refactors.
+
+Before accepting existing green tests as evidence, look for proof of the red state:
+
+- a failing test added before the fix
+- a reproduction command that failed before the fix
+- a saved failure log, screenshot, or transcript from the same work
+- a plan or issue acceptance criterion now covered by a new focused test
+
+If no red evidence exists and the change is still in progress, add or request the smallest test/reproduction that fails for the right reason before changing implementation. Then make the change and rerun the same check until it passes.
+
+If the work is already implemented, do not fake the red phase. Either:
+
+- run the new regression test against the pre-fix commit when doing so is cheap and safe, or
+- report `TDD evidence: not observed` and compensate with stronger focused validation.
+
+Skip the red phase only when the target is documentation-only, pure visual polish without testable behavior, mechanical generated output, or an emergency/environmental fix where adding a test is not practical. State the reason in `Not covered`.
+
+### 3. Pick Evidence
 
 Use repo-native checks first. Prefer the narrowest credible set that can catch real regressions in the touched surfaces:
 
 - targeted tests for changed modules
+- red -> change -> green evidence for new behavior, bug fixes, and non-trivial refactors
 - typecheck, lint, build, or compile checks expected by the repo
 - schema, migration, codegen, lockfile, or formatting checks when relevant
 - CLI/API smoke checks through public interfaces
@@ -78,7 +100,7 @@ Use repo-native checks first. Prefer the narrowest credible set that can catch r
 
 Do not call a static source read "validated" when the artifact can be run. If a command is too expensive, unavailable, or unsafe, state the reason and choose the next credible check.
 
-### 3. Execute Checks
+### 4. Execute Checks
 
 Run commands from the project root unless the repo clearly scopes them elsewhere. Record exact commands and pass/fail results.
 
@@ -96,7 +118,7 @@ If a required check fails:
 - route unexplained failures to `diagnose`
 - report unrelated or environmental blockers with the command and error
 
-### 4. Inspect Evidence
+### 5. Inspect Evidence
 
 Read command output enough to know what passed. Inspect screenshots before calling visual work done.
 
@@ -109,8 +131,9 @@ Check for validation traps:
 - screenshots saved but not viewed
 - lint/typecheck skipped because a narrower test passed
 - acceptance criteria not mapped to any check
+- a regression test was added but no red-state evidence exists
 
-### 5. Verdict
+### 6. Verdict
 
 Return a concise evidence report:
 
@@ -129,6 +152,7 @@ Artifacts:
 Coverage:
 - Covered: <criteria or surfaces>
 - Not covered: <honest gaps>
+- TDD evidence: red observed|not observed|not applicable - <why>
 
 Next:
 - <only if fail/blocked or a real follow-up remains>
