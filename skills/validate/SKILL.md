@@ -19,6 +19,27 @@ Prove that a concrete artifact works. This skill produces evidence, not delivery
 
 Use it when the question is "is this done?", "does this satisfy the plan?", "does the app still work?", or "can we trust this fix?" Do not open PRs, commit, merge, or push from this skill.
 
+## Evidence Bundle
+
+Write validation evidence to `.agent/evidence/<run-slug>/` when the validation has more than one check, includes screenshots/logs, or will be consumed by `review` or `finish-task`.
+
+```text
+.agent/evidence/<run-slug>/
+  manifest.json
+  checks.ndjson
+  index.html
+  summary.md
+  artifacts/
+```
+
+- `manifest.json`: claim, target, producer `validate`, started/finished timestamps when available, verdict, coverage, gaps, and artifact paths.
+- `checks.ndjson`: one JSON object per check with command, status, exit code, duration if known, and evidence path.
+- `index.html`: human review page for command results, screenshots, comparison tables, and gaps.
+- `summary.md`: optional compact text for PR bodies, issues, or final chat.
+- `artifacts/`: screenshots, logs, traces, videos, generated outputs, and other bulky proof.
+
+For tiny validations, a chat report is enough. If any local files are written, use the evidence bundle shape. Do not commit `.agent/evidence/` unless the user explicitly wants a fixture.
+
 ## First Rule
 
 Start from the claim being validated. If the claim is unclear, define it in one sentence before running commands:
@@ -61,6 +82,7 @@ Write a short internal checklist:
 - behavior or artifact being validated
 - acceptance criteria or expected observable result
 - touched runtime surfaces
+- evidence bundle path when a bundle is warranted
 - whether a red -> change -> green loop is required or already evidenced
 - risk areas that need more than a happy-path command
 - checks that are out of scope
@@ -147,7 +169,7 @@ Checks:
 - `<command>`: pass|fail|blocked - <one-line evidence>
 
 Artifacts:
-- <screenshot/log/path/link, or "none">
+- <`.agent/evidence/<run-slug>/index.html`, screenshot/log/path/link, or "none">
 
 Coverage:
 - Covered: <criteria or surfaces>
