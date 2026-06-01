@@ -1,10 +1,10 @@
 {
   "name": "validate",
-  "description": "Evidence-first validation for diffs, bug fixes, UI work, plans, and release candidates.",
-  "version": "0.1.0",
+  "description": "Prove a concrete artifact works before continuing or shipping. Use after implementation, before completion, or when checking a branch, diff, bug fix, UI, plan acceptance criteria, migration, release candidate, or PR without doing delivery.",
+  "version": "1.0.0",
   "author": {
     "name": "cbzehner",
-    "email": "chris@cbzehner.com"
+    "url": "https://github.com/cbzehner"
   },
   "repository": "https://github.com/cbzehner/skill-validate",
   "license": "MIT"

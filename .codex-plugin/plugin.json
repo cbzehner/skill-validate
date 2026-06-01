@@ -1,30 +1,28 @@
 {
   "name": "validate",
-  "version": "0.1.0",
-  "description": "Evidence-first validation for diffs, bug fixes, UI work, plans, and release candidates.",
+  "version": "1.0.0",
+  "description": "Prove a concrete artifact works before continuing or shipping. Use after implementation, before completion, or when checking a branch, diff, bug fix, UI, plan acceptance criteria, migration, release candidate, or PR without doing delivery.",
   "author": {
     "name": "cbzehner",
-    "email": "chris@cbzehner.com",
     "url": "https://github.com/cbzehner"
   },
   "homepage": "https://github.com/cbzehner/skill-validate",
   "repository": "https://github.com/cbzehner/skill-validate",
   "license": "MIT",
-  "keywords": ["validation", "testing", "verification", "evidence", "quality"],
+  "keywords": [
+    "validate",
+    "agent-skill"
+  ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Validate",
-    "shortDescription": "Prove concrete work with evidence.",
-    "longDescription": "Runs repo-native checks, maps acceptance criteria to evidence, captures browser proof when needed, and reports honest validation gaps without committing or delivering changes.",
+    "shortDescription": "Prove a concrete artifact works before continuing or shipping. Use after implementation, before completion, or when c...",
+    "longDescription": "Prove a concrete artifact works before continuing or shipping. Use after implementation, before completion, or when checking a branch, diff, bug fix, UI, plan acceptance criteria, migration, release candidate, or PR without doing delivery.",
     "developerName": "cbzehner",
-    "category": "Quality",
-    "capabilities": ["Test", "Review"],
-    "websiteURL": "https://github.com/cbzehner/skill-validate",
-    "defaultPrompt": [
-      "Validate this implementation against the plan.",
-      "Prove this bug fix works.",
-      "Run acceptance checks for this branch without creating a PR."
+    "category": "Development",
+    "capabilities": [
+      "Development"
     ],
-    "brandColor": "#2F6F5E"
+    "websiteURL": "https://github.com/cbzehner/skill-validate"
   }
 }
