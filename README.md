@@ -49,6 +49,10 @@ LICENSE
 
 These repos are public. Keep private repo names, secrets, customer data, raw logs, cookies, and absolute filesystem paths out of examples.
 
+## Credits
+
+- Section 4a (Remote / CI-Parity Required) borrows the explicit `blocked` verdict pattern from OpenClaw's [`crabbox`](https://github.com/openclaw/agent-skills/tree/main/skills/crabbox) skill by Peter Steinberger.
+
 ## License
 
 MIT

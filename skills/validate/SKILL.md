@@ -140,6 +140,35 @@ If a required check fails:
 - route unexplained failures to `diagnose`
 - report unrelated or environmental blockers with the command and error
 
+### 4a. Remote / CI-Parity Required
+
+Prefer local targeted tests for the edit loop. Reserve remote validation for broad gates: integration suites that need production-like infra, browser matrices, full-CI parity, secrets the workflow legitimately needs.
+
+Declare a remote/CI-parity requirement explicitly when any of the following is true:
+
+- The change touches infra, migrations, deploy paths, or env config that local cannot exercise honestly.
+- Targeted checks pass but the surface only exercises in CI (cross-OS matrix, real DB, real queue, real provider).
+- The repo's documented validation path is CI-bound and there is no local equivalent.
+- A required secret/credential is intentionally absent from the local environment.
+
+When remote validation is required, do not silently downgrade to a weaker local check. Emit a `blocked` verdict with the explicit reason and the suggested remote command:
+
+```markdown
+Validation: blocked
+
+Reason:
+- <one line — what local cannot prove honestly>
+
+Suggested remote check:
+- `<exact command or workflow trigger>`
+- <where the result lands — CI URL, artifact path, or job name>
+
+Local evidence collected so far:
+- <commands run and their results>
+```
+
+If the repo has a documented remote-validation tool (e.g. a `crabbox`/`testbox` wrapper, a `make ci-local`, or an explicit `gh workflow run` recipe), name it. If none exists, say so — do not invent one.
+
 ### 5. Inspect Evidence
 
 Read command output enough to know what passed. Inspect screenshots before calling visual work done.
@@ -196,3 +225,7 @@ Next:
 - Do not hide skipped checks in prose; list them as gaps.
 - Do not upload screenshots externally without explicit approval.
 - Do not invent project commands when repo-native scripts or CI config are available.
+
+## Credits
+
+- Section 4a (Remote / CI-Parity Required) borrows the explicit `blocked` verdict pattern from OpenClaw's [`crabbox`](https://github.com/openclaw/agent-skills/tree/main/skills/crabbox) skill by Peter Steinberger.
