@@ -1,10 +1,13 @@
 ---
 name: validate
 description: >-
-  Prove a concrete artifact works before continuing or shipping. Use after
+  Prove a concrete artifact works with recorded evidence and a pass/fail
+  verdict before continuing or shipping — "make sure this actually works
+  before I move on", "prove the fix", "is this done?". Use after
   implementation, before completion, or when checking a branch, diff, bug fix,
   UI, plan acceptance criteria, migration, release candidate, or PR without
-  doing delivery.
+  doing delivery. Covers TDD red/green proof, acceptance-criteria coverage,
+  and evidence bundles consumed by review and finish-task.
 argument-hint: "[--from-plan path|--ui|--bugfix|--release] [target]"
 arguments:
   - request
