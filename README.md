@@ -1,3 +1,5 @@
+> **Moved:** this skill now lives in [cbzehner/skills](https://github.com/cbzehner/skills) under `skills/validate/`. This repo is archived and read-only.
+
 # Validate
 
 Prove that a concrete artifact works before continuing or shipping. The skill turns “looks done” into evidence through targeted tests, UI checks, bug repros, or release checks.
